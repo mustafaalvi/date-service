@@ -1,7 +1,7 @@
 package com.hour.carmedy.controller;
 
-import com.hour.carmedy.model.UserProfile;
-import com.hour.carmedy.service.UserProfilesService;
+import com.hour.carmedy.model.Profile;
+import com.hour.carmedy.service.ProfilesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/userProfiles")
-public class UserProfileController {
+@RequestMapping("/profiles")
+public class ProfilesController {
 
     @Autowired
-    UserProfilesService userProfilesService;
+    ProfilesService profilesService;
 
     @GetMapping
-    public List<UserProfile> getUserProfiles(
+    public List<Profile> getProfiles(
             @RequestParam("pageSize") int pageSize,
             @RequestParam("pageNumber") int pageNumber){
 
-        return userProfilesService.getUserProfiles(pageSize, pageNumber);
+        return profilesService.getProfiles(pageSize, pageNumber);
     }
 }
