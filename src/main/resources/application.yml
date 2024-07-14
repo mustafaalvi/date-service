@@ -2,5 +2,10 @@
 spring:
   data:
     mongodb:
-      uri: "mongodb+srv://mualvi:iloverona@cluster0.fnsv9.gcp.mongodb.net/?retryWrites=true&w=majority"
+      uri: "mongodb+srv://<USERNAME>:<PASSWORD>@cluster0.fnsv9.gcp.mongodb.net/?retryWrites=true&w=majority"
       database: DateApp
+
+chatgpt:
+  api:
+    url: https://api.openai.com/v1/chat/completions
+    key: "<API_KEY>"
