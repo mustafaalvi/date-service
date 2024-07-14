@@ -1,0 +1,50 @@
+Played with the completion API. USed a few models to minimize token usage. Simple way for testing is to set the max_tokens param on request = 5.
+    gpt-4o-mini was the cost-effective impl. so I went with that
+    The total token cost is still the sum of request + response, so be careful
+    Also ran into some issues parsing the response from the Spring RestClient itself
+    Just needed to make sure the request body was made into a string before passing
+
+
+OpenAPI Model Generation Plugin: Java DTOs for APIs and ORMs
+    We use something similar at work
+        it saves a ton of nested DTO creations for API models which the Spring Controllers will have to work with
+    https://medium.com/@tiokachiu/java-based-apis-with-openapi-specifications-a-comprehensive-guide-b7ef8b649776
+    https://medium.com/@jmilanovic/openapi-magic-in-api-testing-never-deal-with-dto-java-classes-again-dc20dc870358
+    https://swagger.io/docs/specification/data-models/data-types/#object
+
+Constructor-based Dependency Injection vs. Field Injection (i.e. @Autowired)
+    As I expected, the @Autowired is simpler during implementation time (less lines of code)
+    However, during testing, you need to either use reflection or mod the AppContext to inject mock dependencies
+    https://medium.com/@detoxicdev/field-injection-v-s-constructor-injection-dd9db2d85b7b
+
+Using a config class to define the default behavior of the RestClient
+    Probably a good idea because this will modularize the code and prevent repeating boiler plate header
+    https://stackoverflow.com/questions/67691575/when-should-you-use-configuration-instead-of-service-controller-component-fo
+
+RestTemplate => WebClient (in Spring WebFlux framework) => RestClient(built atop WebClient, as of SpringBoot 3.2)
+    The ol' school RestTemplate was synchronous (ie blocking)
+    WebClient was introduced to be async + non-blocking, apt for Reactive Programming
+    RestClient is meant to bring fluency to the client API, while still being blocking!
+    https://dzone.com/articles/spring-boot-32-replace-your-resttemplate-with-rest#:~:text=With%20the%20advent%20of%20Spring,suited%20for%20building%20reactive%20applications.
+    https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-restclient
+
+Lombok and the @Data + @Builder notations
+    Helped easily apply the build pattern to these POJOS making service code cleaner
+
+PromptEngineering - Working with OpenAI API (Chat Completions), Java Integrations, Token Usage, Key Creation
+    https://platform.openai.com/docs/guides/text-generation
+
+@MockBean vs. @Mock
+    Important note that MockBean actually affects the marked bean within the whole ApplicationContext
+    https://www.baeldung.com/java-spring-mockito-mock-mockbean
+    https://semaphoreci.com/community/tutorials/stubbing-and-mocking-with-mockito-2-and-junit#verifying-arguments-with-argument-captors
+
+Application.properties vs. Applciation.yml and the order of precedence used by spring in evaulating such config
+    Referencing values using interpolated @Value annotation
+
+Storing Conversation data (to be retrieved) in relational vs. non-relational DB
+
+Considerations for what JSON package to use - Org.Json being the lightestweight
+    https://techmusings.optisolbusiness.com/a-quick-study-on-json-java-libraries-e2ff8b11c371
+    https://stackoverflow.com/questions/8876089/how-to-fluently-build-json-in-java
+

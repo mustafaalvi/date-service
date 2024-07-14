@@ -15,20 +15,20 @@ import java.util.List;
 public class Conversation {
 
     @Id
-    ObjectId id;
-    ObjectId userId;
-    long conversationId;
-    LocalDateTime timestamp;
-    List<Message> messages;
+    private ObjectId id;
+    private ObjectId userId;
+    private long conversationId;
+    private LocalDateTime timestamp;
+    private List<Message> messages;
 
 
 
     @Data
     public static class Message {
 
-        String sender;
-        String message;
-        LocalDateTime timestamp;
+        protected String sender;
+        protected String message;
+        protected LocalDateTime timestamp;
 
         public Message(String sender, String message, LocalDateTime timestamp){
             this.sender = sender;

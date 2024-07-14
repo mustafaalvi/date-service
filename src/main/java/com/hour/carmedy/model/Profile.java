@@ -10,13 +10,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Profile {
 
     @Id
-    public ObjectId id;
-    public ObjectId userId;
-    public String name;
-    public int age;
-    public String occupation;
-    public String gender;
-    public String summary;
+    private ObjectId id;
+    private ObjectId userId;
+    private String name;
+    private int age;
+    private String occupation;
+    private String gender;
+    private String summary;
 
 
 }
